@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.2](https://github.com/CyanSalt/corner-smoothie/compare/v0.1.1...v0.1.2) (2025-02-14)
+
+### Bug Fixes
+
+* xlink namespace for svg ([6b9e114](https://github.com/CyanSalt/corner-smoothie/commit/6b9e11415c1f59f6d7aed245653d00f942018133))
+
 ## [0.1.1](https://github.com/CyanSalt/corner-smoothie/compare/v0.1.0...v0.1.1) (2025-02-14)
 
 ### Bug Fixes
