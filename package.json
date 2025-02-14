@@ -1,0 +1,48 @@
+{
+  "name": "corner-smoothie",
+  "version": "0.1.0-0",
+  "description": "Create elements with Figma corner smoothing",
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./worklet": "./dist/worklet.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "lint": "eslint --fix './**/*.{js,ts}'",
+    "prepack": "unbuild",
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CyanSalt/corner-smoothie.git"
+  },
+  "keywords": [
+    "corner-smoothing",
+    "css",
+    "houdini"
+  ],
+  "author": "CyanSalt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CyanSalt/corner-smoothie/issues"
+  },
+  "homepage": "https://github.com/CyanSalt/corner-smoothie#readme",
+  "devDependencies": {
+    "@cyansalt/eslint-config": "^4.3.0",
+    "@cyansalt/tsconfig": "^2.2.1",
+    "@release-it/conventional-changelog": "^10.0.0",
+    "release-it": "^18.1.2",
+    "typescript": "^5.7.3",
+    "unbuild": "^3.3.1"
+  },
+  "dependencies": {
+    "draw-svg-path": "^2.0.1",
+    "figma-squircle": "^1.1.0"
+  }
+}
