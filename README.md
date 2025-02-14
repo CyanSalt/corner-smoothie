@@ -2,6 +2,12 @@
 
 [![npm](https://img.shields.io/npm/v/corner-smoothie.svg)](https://www.npmjs.com/package/corner-smoothie)
 
+![Squircle without smoothing](./playground/squircle.svg)
+&nbsp;
+![Squircle with full smoothing](./playground/squircle-smoothie-60.svg)
+&nbsp;
+![Squircle with full smoothing](./playground/squircle-smoothie-100.svg)
+
 Create elements with [Figma corner smoothing](https://www.figma.com/blog/desperately-seeking-squircles/).
 
 [Live Demo](https://raw.githack.com/CyanSalt/corner-smoothie/main/playground/index.html)
