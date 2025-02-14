@@ -1,6 +1,6 @@
 {
   "name": "corner-smoothie",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Create elements with Figma corner smoothing",
   "type": "module",
   "main": "./dist/index.mjs",
