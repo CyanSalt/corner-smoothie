@@ -4,6 +4,8 @@
 
 Create elements with [Figma corner smoothing](https://www.figma.com/blog/desperately-seeking-squircles/).
 
+[Live Demo](https://raw.githack.com/CyanSalt/corner-smoothie/main/playground/index.html)
+
 ## Usage
 
 ### CSS Paint API (Recommended)
