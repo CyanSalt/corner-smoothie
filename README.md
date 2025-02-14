@@ -24,7 +24,7 @@ CSS.paintWorklet.addModule('https://<url-to-corner-smoothie>/dist/worklet.js')
 
 @supports (mask-image: paint(smoothie-mask)) {
   .my-element {
-    --smoothie-border-radius: 12;
+    --smoothie-border-radius: 12px;
     --smoothie-border-smoothing: 0.6;
     border-radius: 0;
     mask-image: paint(smoothie-mask);
@@ -41,7 +41,7 @@ CSS.paintWorklet.addModule('https://<url-to-corner-smoothie>/dist/worklet.js')
 @supports (background-image: paint(smoothie-background)) {
   .my-element {
     --smoothie-background-color: cyan;
-    --smoothie-border-radius: 12;
+    --smoothie-border-radius: 12px;
     --smoothie-border-smoothing: 0.6;
     background-color: transparent;
     border-radius: 0;
