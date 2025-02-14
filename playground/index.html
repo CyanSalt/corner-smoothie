@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corner Smoothie</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "corner-smoothie": "https://cdn.jsdelivr.net/npm/corner-smoothie/+esm",
+      "vue": "https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.esm-browser.js"
+    }
+  }
+  </script>
+  <style>
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 360px;
+  }
+  .squircle-button {
+    --smoothie-border-radius: 12px;
+    appearance: none;
+    padding: 12px 24px;
+    border: none;
+    font-size: 20px;
+    color: white;
+    background-color: transparent;
+  }
+  #squircle-with-mask {
+    background-color: deeppink;
+    mask-image: paint(smoothie-mask);
+  }
+  #squircle-with-background {
+    --smoothie-background-color: deepskyblue;
+    background-image: paint(smoothie-background);
+  }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script type="module">
+  import {
+    createBackgroundImage,
+    createMaskImage,
+  } from 'corner-smoothie'
+  import {
+    computed,
+    createApp,
+    ref,
+  } from 'vue'
+  CSS.paintWorklet.addModule('https://cdn.jsdelivr.net/npm/corner-smoothie/dist/worklet.js')
+
+  createApp({
+    setup() {
+      const smoothing = ref(0)
+      const block = ref(72)
+      const size = computed(() => `${block.value}px`)
+      const background = computed(() => createBackgroundImage(
+        { width: block.value, height: block.value },
+        { borderRadius: 12, borderRadiusSmoothing: smoothing.value, backgroundColor: 'skyblue' },
+      ))
+      const mask = computed(() => createMaskImage(
+        { width: block.value, height: block.value },
+        { borderRadius: 12, borderRadiusSmoothing: smoothing.value },
+      ))
+      return {
+        smoothing,
+        size,
+        background,
+        mask,
+      }
+    },
+    template: `
+      <main>
+        <form>
+          <fieldset>
+            <legend>Smoothie Options</legend>
+            <label for="smoothing">Smoothing</label>
+            <input
+              v-model.number="smoothing"
+              id="smoothing"
+              type="range"
+              min="0"
+              max="1"
+              step="0.1"
+              list="smoothing-markers"
+            />
+            <datalist id="smoothingmarkers">
+              <option value="0.6">iOS</option>
+            </datalist>
+          </fieldset>
+        </form>
+        <button
+          id="squircle-with-mask"
+          type="button"
+          class="squircle-button"
+          :style="{ '--smoothie-border-radius-smoothing': smoothing }"
+        >Squircle with mask</button>
+        <button
+          id="squircle-with-background"
+          type="button"
+          class="squircle-button"
+          :style="{ '--smoothie-border-radius-smoothing': smoothing }"
+        >Squircle with background</button>
+        <div
+          id="squircle-with-svg-mask"
+          class="squircle-block"
+          :style="{ width: size, height: size, 'background-color': 'pink', 'mask-image': mask }"
+        ></div>
+        <div
+          id="squircle-with-svg-background"
+          class="squircle-block"
+          :style="{ width: size, height: size, 'background-image': background }"
+        ></div>
+      </main>
+    `,
+  })
+    .mount('#app')
+  </script>
+</body>
+</html>
