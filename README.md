@@ -13,6 +13,8 @@ Create elements with [Figma corner smoothing](https://www.figma.com/blog/despera
 
 ```js
 CSS.paintWorklet.addModule('https://<url-to-corner-smoothie>/dist/worklet.js')
+// e.g.
+// CSS.paintWorklet.addModule('https://cdn.jsdelivr.net/npm/corner-smoothie/dist/worklet.js')
 ```
 
 ```css
