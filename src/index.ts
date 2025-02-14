@@ -35,7 +35,7 @@ export function createBackgroundImage({
   const fillAttrs = backgroundColor ? ` fill="${backgroundColor}"` : ''
   const strokeAttrs = borderColor && borderWidth > 0 ? ` stroke="${borderColor}" stroke-width="${borderWidth * 2}"` : ''
   const path = createSVGPath(width, height, borderRadius, borderRadiusSmoothing)
-  const content = strokeAttrs ? `<path id="path-1" d="${path}" clip-path="url(#clip-1)"/><clipPath id="clip-1"><use xlink:href="#path-1"/></clipPath>` : `<path d="${path}"/>`
+  const content = strokeAttrs ? `<path id="path-1" d="${path}" clip-path="url(#clip-1)"${strokeAttrs}/><clipPath id="clip-1"><use xlink:href="#path-1"/></clipPath>` : `<path d="${path}"/>`
   const nsAttrs = ` xmlns="http://www.w3.org/2000/svg"${strokeAttrs ? ` xmlns:xlink="http://www.w3.org/1999/xlink"` : ''}`
   return toCSSURL(createDataURL(`<svg${nsAttrs}${sizeAttrs}${fillAttrs}>${content}</svg>`))
 }
