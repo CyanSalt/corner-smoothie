@@ -7,37 +7,8 @@ declare global {
     readonly width: number,
   }
 
-  type PaintRenderingContext2D = Pick<
-    CanvasRenderingContext2D,
-    // Context
-    'isContextLost'
-    // State
-    | 'save' | 'restore' | 'reset'
-    // Transformations
-    | 'getTransform' | 'rotate' | 'scale' | 'translate' | 'transform' | 'setTransform' | 'resetTransform'
-    // Compositing
-    | 'globalAlpha' | 'globalCompositeOperation'
-    // Image smoothing
-    | 'imageSmoothingEnabled' | 'imageSmoothingQuality'
-    // Fill and stroke styles
-    | 'fillStyle' | 'strokeStyle'
-    // Gradients and patterns
-    | 'createConicGradient' | 'createLinearGradient' | 'createRadialGradient' | 'createPattern'
-    // Shadows
-    | 'shadowBlur' | 'shadowColor' | 'shadowOffsetX' | 'shadowOffsetY'
-    // Drawing rectangles
-    | 'clearRect' | 'fillRect' | 'strokeRect'
-    // Drawing paths
-    | 'beginPath' | 'fill' | 'stroke' | 'clip' | 'isPointInPath' | 'isPointInStroke'
-    // Drawing images
-    | 'drawImage'
-    // Line styles
-    | 'lineWidth' | 'lineCap' | 'lineJoin' | 'miterLimit' | 'getLineDash' | 'setLineDash' | 'lineDashOffset'
-    // Paths
-    | 'closePath' | 'moveTo' | 'lineTo' | 'bezierCurveTo' | 'quadraticCurveTo' | 'arc' | 'arcTo' | 'ellipse' | 'rect' | 'roundRect'
-    // Filters
-    | 'filter'
-  >
+  // eslint-disable-next-line @stylistic/js/max-len
+  interface PaintRenderingContext2D extends CanvasCompositing, CanvasDrawImage, CanvasDrawPath, CanvasFillStrokeStyles, CanvasFilters, CanvasImageSmoothing, CanvasPath, CanvasPathDrawingStyles, CanvasRect, CanvasShadowStyles, CanvasState, CanvasTransform {}
 
   interface PaintContextOptions {
     alpha?: boolean,
@@ -48,15 +19,17 @@ declare global {
       ctx: PaintRenderingContext2D,
       size: PaintSize,
       properties: StylePropertyMapReadOnly,
+      args: string[],
     ): void,
   }
 
+  type PaintRenderingContext2DSettings = CanvasRenderingContext2DSettings
+
   interface PaintWorkletConstructor {
     new(): PaintWorklet,
-    readonly contextOptions?: {
-      alpha?: boolean,
-    },
     readonly inputProperties?: string[],
+    readonly inputArguments?: string[],
+    readonly contextOptions?: PaintRenderingContext2DSettings,
   }
 
   /**
