@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.3](https://github.com/CyanSalt/corner-smoothie/compare/v0.1.2...v0.1.3) (2025-02-14)
+
+### Bug Fixes
+
+* stroke attrs for SVG ([d9ada1b](https://github.com/CyanSalt/corner-smoothie/commit/d9ada1b67b8d263b1ba9137043e43a4bffce325f))
+
 ## [0.1.2](https://github.com/CyanSalt/corner-smoothie/compare/v0.1.1...v0.1.2) (2025-02-14)
 
 ### Bug Fixes
