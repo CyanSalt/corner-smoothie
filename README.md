@@ -103,6 +103,32 @@ const background = createBackgroundImage(
 element.style.backgroundImage = background
 ```
 
+JS API is especially useful for browsers that do not support the CSS Painting API such as Firefox. You can use `ResizeObserver` to have a similar experience to the CSS Painting API:
+
+```js
+import { createMaskImage } from 'corner-smoothie'
+
+const observer = new ResizeObserver(entries => {
+  for (const entry of entries) {
+    if (entry.borderBoxSize.length) {
+      entry.target.style.maskImage = createMaskImage({
+        width: entry.borderBoxSize[0].inlineSize,
+        height: entry.borderBoxSize[0].blockSize,
+      }, {
+        // Normally you can't use the CSS Typed OM API
+        // because you only need to use the CSS Painting API in these browsers
+        borderRadius: parseFloat(getComputedStyle(entry.target).getPropertyValue('--smoothie-border-radius')),
+        borderRadiusSmoothing: 0.6,
+      })
+    }
+  }
+})
+
+observer.observe(element)
+```
+
+> Some older browsers may not support [`borderBoxSize`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry/borderBoxSize), you may need to use [`contentRect`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry/contentRect) instead.
+
 ## Differences between mask and background
 
 | Feature | Mask | Background |
