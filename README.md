@@ -4,7 +4,7 @@
 
 ![Squircle without smoothing](./playground/squircle.svg)
 &nbsp;
-![Squircle with full smoothing](./playground/squircle-smoothie-60.svg)
+![Squircle with iOS smoothing](./playground/squircle-smoothie-60.svg)
 &nbsp;
 ![Squircle with full smoothing](./playground/squircle-smoothie-100.svg)
 
