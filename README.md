@@ -20,10 +20,24 @@ Create elements with [Figma corner smoothing](https://www.figma.com/blog/despera
 > See [Browser compatibility](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Painting_API#browser_compatibility).
 
 ```js
-CSS.paintWorklet.addModule('https://<url-to-corner-smoothie>/dist/worklet.js')
-// e.g.
-// CSS.paintWorklet.addModule('https://cdn.jsdelivr.net/npm/corner-smoothie/dist/worklet.js')
+CSS.paintWorklet.addModule('<url-to-corner-smoothie-worklet>')
 ```
+
+#### Using CDN (jsdelivr)
+
+```js
+CSS.paintWorklet.addModule('https://cdn.jsdelivr.net/npm/corner-smoothie/dist/worklet.js')
+```
+
+#### Using Vite
+
+```js
+import smoothieWorklet from 'corner-smoothie/worklet?url'
+
+CSS.paintWorklet.addModule(smoothieWorklet)
+```
+
+#### CSS Declarations
 
 ```css
 .my-element {
