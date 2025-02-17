@@ -14,7 +14,7 @@ Create elements with [Figma corner smoothing](https://www.figma.com/blog/despera
 
 ## Usage
 
-### CSS Paint API (Recommended)
+### CSS Painting API (Recommended)
 
 > [!TIP]
 > See [Browser compatibility](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Painting_API#browser_compatibility).
