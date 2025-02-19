@@ -55,3 +55,36 @@ export function createMaskImage(size: SmoothieSize, {
     borderRadiusSmoothing,
   })
 }
+
+export function registerProperties() {
+  CSS.registerProperty({
+    name: '--smoothie-background-color',
+    syntax: '<color>',
+    inherits: false,
+    initialValue: 'transparent',
+  })
+  CSS.registerProperty({
+    name: '--smoothie-border-color',
+    syntax: '<color>',
+    inherits: false,
+    initialValue: 'transparent',
+  })
+  CSS.registerProperty({
+    name: '--smoothie-border-radius',
+    syntax: '<length>',
+    inherits: false,
+    initialValue: 'transparent',
+  })
+  CSS.registerProperty({
+    name: '--smoothie-border-smoothing',
+    syntax: '<number> | <percentage>',
+    inherits: false,
+    initialValue: '0',
+  })
+  CSS.registerProperty({
+    name: '--smoothie-border-width',
+    syntax: '<length>',
+    inherits: false,
+    initialValue: '0px',
+  })
+}

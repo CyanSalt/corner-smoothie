@@ -16,7 +16,7 @@ Create elements with [Figma corner smoothing](https://www.figma.com/blog/despera
 
 ### CSS Painting API (Recommended)
 
-> [!TIP]
+> [!IMPORTANT]
 > See [Browser compatibility](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Painting_API#browser_compatibility).
 
 ```js
@@ -35,6 +35,17 @@ CSS.paintWorklet.addModule('https://cdn.jsdelivr.net/npm/corner-smoothie/dist/wo
 import smoothieWorklet from 'corner-smoothie/worklet?url'
 
 CSS.paintWorklet.addModule(smoothieWorklet)
+```
+
+### Registering
+
+> [!NOTE]
+> Although the fallback behavior ensures this is optional, the supported CSS property values ​​will be limited if not registered. For example, `--smoothie-border-radius` could only be declared in static units, such as `4px` or `1cm` but not `0.25em`.
+
+```js
+import { registerProperties } from 'corner-smoothie'
+
+registerProperties()
 ```
 
 #### CSS Declarations

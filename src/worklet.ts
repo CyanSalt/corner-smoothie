@@ -1,18 +1,36 @@
 import draw from 'draw-svg-path'
 import { createSVGPath } from './path'
 
-function parseCSSUnitValue(source: CSSStyleValue, unit: string) {
+function toCSSNumericValue(source: CSSStyleValue | null | undefined) {
+  if (!source) return null
   try {
-    const text = source.toString()
-    const value = CSSNumericValue.parse(text).to(unit)
-    return value.value
+    return source instanceof CSSNumericValue
+      ? source
+      : CSSNumericValue.parse(source.toString())
   } catch {
-    return NaN
+    return null
   }
 }
 
-function coalesceNaN(value: number, fallback: number) {
-  return isNaN(value) ? fallback : value
+function toLength(input: CSSStyleValue | null | undefined, fallback = 0) {
+  const source = toCSSNumericValue(input)
+  if (!source) return fallback
+  try {
+    return source.to('px').value
+  } catch {
+    return fallback
+  }
+}
+
+function toPercentage(input: CSSStyleValue | null | undefined, fallback = 0) {
+  const source = toCSSNumericValue(input)
+  if (!source) return fallback
+  try {
+    if (source instanceof CSSUnitValue && source.unit === 'number') return source.value
+    return source.to('percent').value * 0.01
+  } catch {
+    return fallback
+  }
 }
 
 class SmoothieBackground implements PaintWorklet {
@@ -34,30 +52,23 @@ class SmoothieBackground implements PaintWorklet {
   ) {
     const backgroundColor = properties.get('--smoothie-background-color')
     const borderColor = properties.get('--smoothie-border-color')
-    const borderRadius = properties.get('--smoothie-border-radius')
-    const borderRadiusSmoothing = properties.get('--smoothie-border-radius-smoothing')
-    const borderWidth = properties.get('--smoothie-border-width')
-
-    const radius = borderRadius ? coalesceNaN(parseCSSUnitValue(borderRadius, 'px'), 0) : 0
-    const smoothing = borderRadiusSmoothing ? Math.min(Math.max(coalesceNaN(coalesceNaN(
-      parseCSSUnitValue(borderRadiusSmoothing, 'number'),
-      parseCSSUnitValue(borderRadiusSmoothing, 'percent') * 0.01,
-    ), 0), 0), 1) : 0
-    const strokeWidth = borderWidth ? coalesceNaN(parseCSSUnitValue(borderWidth, 'px'), 0) : 0
+    const borderRadius = toLength(properties.get('--smoothie-border-radius'))
+    const borderRadiusSmoothing = toPercentage(properties.get('--smoothie-border-radius-smoothing'))
+    const borderWidth = toLength(properties.get('--smoothie-border-width'))
 
     ctx.beginPath()
-    draw(ctx, createSVGPath(size.width, size.height, radius, smoothing))
+    draw(ctx, createSVGPath(size.width, size.height, borderRadius, borderRadiusSmoothing))
     ctx.closePath()
 
     if (backgroundColor) {
       ctx.fillStyle = backgroundColor.toString()
       ctx.fill()
     }
-    if (borderColor && strokeWidth > 0) {
+    if (borderColor && borderWidth > 0) {
       // Inner stroke
       ctx.clip()
       ctx.strokeStyle = borderColor.toString()
-      ctx.lineWidth = strokeWidth * 2
+      ctx.lineWidth = borderWidth * 2
       ctx.stroke()
     }
   }
@@ -78,13 +89,11 @@ class SmoothieMask implements PaintWorklet {
     size: PaintSize,
     properties: StylePropertyMapReadOnly,
   ) {
-    const borderRadius = properties.get('--smoothie-border-radius')
-    const borderRadiusSmoothing = properties.get('--smoothie-border-radius-smoothing')
-    const radius = borderRadius ? coalesceNaN(parseFloat(borderRadius.toString()), 0) : 0
-    const smoothing = borderRadiusSmoothing ? coalesceNaN(parseFloat(borderRadiusSmoothing.toString()), 0) : 0
+    const borderRadius = toLength(properties.get('--smoothie-border-radius'))
+    const borderRadiusSmoothing = toPercentage(properties.get('--smoothie-border-radius-smoothing'))
 
     ctx.beginPath()
-    draw(ctx, createSVGPath(size.width, size.height, radius, smoothing))
+    draw(ctx, createSVGPath(size.width, size.height, borderRadius, borderRadiusSmoothing))
     ctx.closePath()
 
     ctx.fillStyle = '#000'
