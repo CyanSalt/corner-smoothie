@@ -72,6 +72,8 @@ CSS.paintWorklet.addModule(smoothieWorklet)
 }
 ```
 
+The `border-radius: 0` above can also be omitted, since smooth rounded corners are completely inside the tangent rounded corners.
+
 #### Supported custom properties
 
 - `--smoothie-background-color`: Alternative to `background-color`. Available in background mode.
