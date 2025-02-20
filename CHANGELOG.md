@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.4](https://github.com/CyanSalt/corner-smoothie/compare/v0.1.3...v0.1.4) (2025-02-20)
+
+### Bug Fixes
+
+* expose `registerProperties` ([2a71071](https://github.com/CyanSalt/corner-smoothie/commit/2a71071d056e9f211f356c2dcf0ea11b26268727))
+
 ## [0.1.3](https://github.com/CyanSalt/corner-smoothie/compare/v0.1.2...v0.1.3) (2025-02-14)
 
 ### Bug Fixes
