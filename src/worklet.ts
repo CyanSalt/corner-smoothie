@@ -6,7 +6,10 @@ function toCSSNumericValue(source: CSSStyleValue | null | undefined) {
   try {
     return source instanceof CSSNumericValue
       ? source
-      : CSSNumericValue.parse(source.toString())
+      // Cannot use Typed OM parser here
+      // See https://github.com/w3c/css-houdini-drafts/issues/238
+      // : CSSNumericValue.parse(source.toString())
+      : null
   } catch {
     return null
   }

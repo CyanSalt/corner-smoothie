@@ -7,7 +7,7 @@
   <script type="importmap">
   {
     "imports": {
-      "corner-smoothie": "https://cdn.jsdelivr.net/npm/corner-smoothie@0.1.3/+esm",
+      "corner-smoothie": "https://cdn.jsdelivr.net/npm/corner-smoothie@latest/+esm",
       "vue": "https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.esm-browser.js"
     }
   }
@@ -79,13 +79,16 @@
   import {
     createBackgroundImage,
     createMaskImage,
+    registerProperties,
   } from 'corner-smoothie'
   import {
     computed,
     createApp,
     ref,
   } from 'vue'
-  CSS.paintWorklet.addModule('https://cdn.jsdelivr.net/npm/corner-smoothie/dist/worklet.js')
+
+  registerProperties()
+  CSS.paintWorklet.addModule('https://cdn.jsdelivr.net/npm/corner-smoothie@latest/dist/worklet.js')
 
   createApp({
     setup() {

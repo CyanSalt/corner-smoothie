@@ -67,16 +67,16 @@ export function registerProperties() {
     name: '--smoothie-border-color',
     syntax: '<color>',
     inherits: false,
-    initialValue: 'transparent',
+    initialValue: 'currentcolor',
   })
   CSS.registerProperty({
     name: '--smoothie-border-radius',
     syntax: '<length>',
     inherits: false,
-    initialValue: 'transparent',
+    initialValue: '0px',
   })
   CSS.registerProperty({
-    name: '--smoothie-border-smoothing',
+    name: '--smoothie-border-radius-smoothing',
     syntax: '<number> | <percentage>',
     inherits: false,
     initialValue: '0',

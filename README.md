@@ -37,12 +37,10 @@ import smoothieWorklet from 'corner-smoothie/worklet?url'
 CSS.paintWorklet.addModule(smoothieWorklet)
 ```
 
-### Registering
+### Registering (Required)
 
 > [!NOTE]
-> Although the fallback behavior ensures this is optional, the supported CSS property values ​​will be limited if not registered. For example, `--smoothie-border-radius` could only be declared in static units, such as `4px` or `1cm` but not `0.25em`.
->
-> Also note that `registerProperties` relies on the CSS Properties and Values ​​API, which [has different browser compatibility](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Properties_and_Values_API#api.css.registerproperty_static).
+> `registerProperties` relies on the CSS Properties and Values ​​API, which [has different browser compatibility](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Properties_and_Values_API#api.css.registerproperty_static).
 
 ```js
 import { registerProperties } from 'corner-smoothie'
