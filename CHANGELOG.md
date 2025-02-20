@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.1.5](https://github.com/CyanSalt/corner-smoothie/compare/v0.1.4...v0.1.5) (2025-02-20)
+
+### Bug Fixes
+
+* require registering ([c36d7ab](https://github.com/CyanSalt/corner-smoothie/commit/c36d7ab07b4017870c2f912fe2bddf9209ac04e3))
+
 ## [0.1.4](https://github.com/CyanSalt/corner-smoothie/compare/v0.1.3...v0.1.4) (2025-02-20)
 
 ### Bug Fixes
