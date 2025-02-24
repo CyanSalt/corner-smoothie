@@ -14,7 +14,7 @@ declare global {
     alpha?: boolean,
   }
 
-  interface PaintWorklet {
+  interface PaintWorkletModule {
     paint(
       ctx: PaintRenderingContext2D,
       size: PaintSize,
@@ -25,8 +25,8 @@ declare global {
 
   type PaintRenderingContext2DSettings = CanvasRenderingContext2DSettings
 
-  interface PaintWorkletConstructor {
-    new(): PaintWorklet,
+  interface PaintWorkletModuleConstructor {
+    new(): PaintWorkletModule,
     readonly inputProperties?: string[],
     readonly inputArguments?: string[],
     readonly contextOptions?: PaintRenderingContext2DSettings,
@@ -35,6 +35,6 @@ declare global {
   /**
    * {@link https://developer.mozilla.org/en-US/docs/Web/API/PaintWorkletGlobalScope/registerPaint}
    */
-  function registerPaint(name: string, classRef: PaintWorkletConstructor): void
+  function registerPaint(name: string, classRef: PaintWorkletModuleConstructor): void
 
 }
