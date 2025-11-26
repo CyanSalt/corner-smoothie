@@ -36,7 +36,7 @@ function toPercentage(input: CSSStyleValue | null | undefined, fallback = 0) {
   }
 }
 
-class SmoothieBackground implements PaintWorklet {
+class SmoothieBackground implements PaintWorkletModule {
 
   static get inputProperties() {
     return [
@@ -78,7 +78,7 @@ class SmoothieBackground implements PaintWorklet {
 
 }
 
-class SmoothieMask implements PaintWorklet {
+class SmoothieMask implements PaintWorkletModule {
 
   static get inputProperties() {
     return [

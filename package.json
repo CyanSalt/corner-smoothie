@@ -38,7 +38,7 @@
   "homepage": "https://github.com/CyanSalt/corner-smoothie#readme",
   "devDependencies": {
     "@cyansalt/eslint-config": "^4.3.0",
-    "@cyansalt/tsconfig": "^2.2.1",
+    "@cyansalt/tsconfig": "^3.0.0",
     "@release-it/conventional-changelog": "^10.0.0",
     "release-it": "^18.1.2",
     "typescript": "^5.7.3",
